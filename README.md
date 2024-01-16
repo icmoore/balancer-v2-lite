@@ -1,7 +1,7 @@
 # Balancer V2 Lite
 
-Balancer v2 Lite with no pre-compliled (solidity) npm library calls; compile from scratch and use typechain for testing; useful for core devs who wish to work directly with 
-raw solidity and not rely on balancer v2 npm libraries
+Balancer v2 Lite for bare bones implementation directly from solidity; compile from scratch and use 
+typechain for testing; useful for core devs who wish to work directly with raw solidity and not rely on pre-compiled balancer v2 npm libraries
 
 Basic usage include:
 * deploy vault
