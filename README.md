@@ -22,10 +22,10 @@ $ yarn build
 
 ### Usage
 
-Sample Weighted Pool that computes weights dynamically on every swap, join and exit:
+Sample Weighted Pool that computes weights dynamically on every swap
 
 ```
-$ npm test test/BasicTest.ts
+$ yarn test test/BasicTest.ts
 ```
 
 ## Licensing
