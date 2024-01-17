@@ -17,7 +17,7 @@ Basic usage include:
 ### Installation
 
 ```console
-$ yarn # install typescript dependencies
+$ yarn       # install dev dependencies
 $ yarn build # compile solidity
 ```
 
