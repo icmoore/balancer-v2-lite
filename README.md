@@ -10,7 +10,7 @@ Basic usage include:
 * protocol fee provider
 * weighted pool factory
 * initial token join
-* swapping
+* swapgivenin / swapgivenout
 
 ## Overview
 

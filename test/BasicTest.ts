@@ -35,7 +35,6 @@ const INITIAL_BALANCES = [fp(0.9), fp(1.8), fp(2.7), fp(3.6)];
 const TOKEN_SYMBOLS = ['MKR', 'DAI', 'SNX', 'BAT'].slice(0, numTokens)
 const weights: BigNumberish[] = WEIGHTS.slice(0, numTokens);
 const initialBalances = INITIAL_BALANCES.slice(0, numTokens);
-const ZEROS = Array(3).fill(bn(0));
 const MAX_AUM_VALUE = fp(0.2);
 const MAX_YIELD_VALUE = fp(0.8);
 
@@ -50,13 +49,11 @@ let deployer: SignerWithAddress;
 let recipient: SignerWithAddress;
 let vaultSigner: SignerWithAddress;
 let admin: SignerWithAddress;
-let basicFactory: BasicWeightedPool;
-let swapsFactory: Swaps;
+let weightedPool: BasicWeightedPool;
 let authorizer: Contract;
 let feesProvider: ProtocolFeePercentagesProvider;
 let vault: Vault;
 let entrypoint: MockAuthorizerAdaptorEntrypoint;
-let tsttkn: TestToken;
 
 async function deployRawVault(): Promise<void>  {
   entrypoint = await new MockAuthorizerAdaptorEntrypoint__factory(deployer).deploy()
@@ -96,7 +93,7 @@ async function deployRawWeightedPoolContract(): Promise<void>  {
       swapFeePercentage: POOL_SWAP_FEE_PERCENTAGE,
     };
                                 
-    basicFactory = await new BasicWeightedPool__factory(deployer).deploy(pool_params,
+    weightedPool = await new BasicWeightedPool__factory(deployer).deploy(pool_params,
                                                 vault.address, 
                                                 feesProvider.address,
                                                 BASE_PAUSE_WINDOW_DURATION, 
@@ -110,23 +107,21 @@ async function deployRawWeightedPoolContract(): Promise<void>  {
     const abi = ['uint256', 'uint256[]'];
     const data = [joinKind, initialBalances];
     const userData = defaultAbiCoder.encode(abi,data); 
-    const poolId = await basicFactory.getPoolId();
-    const poolTokens = await vault.getPoolTokens(poolId)
+    const poolId = await weightedPool.getPoolId();
   
     const request: JoinPoolRequest = {
       assets: tokens.addresses,
       maxAmountsIn: initialBalances,
-      userData: WeightedPoolEncoder.joinInit(initialBalances),
+      userData: userData,
       fromInternalBalance: false,
     };
   
     const tx = await vault.connect(lp).joinPool(poolId, lp.address, recipient.address, request);
-
   }
 
   async function rawSwapVault(): Promise<void> {
 
-    const poolId = await basicFactory.getPoolId();
+    const poolId = await weightedPool.getPoolId();
     const amount = fp(0.1);
     const amountWithFees = fpMul(amount, POOL_SWAP_FEE_PERCENTAGE.add(fp(1)));
 
@@ -150,7 +145,7 @@ async function deployRawWeightedPoolContract(): Promise<void>  {
   }
 
   async function poolInfo(context: string): Promise<void> {
-    const poolId = await basicFactory.getPoolId();
+    const poolId = await weightedPool.getPoolId();
     const poolTokens = await vault.getPoolTokens(poolId)
   
     let message: string = "\n        Weighted pool info: " + context + "+\n";
