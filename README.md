@@ -17,8 +17,8 @@ Basic usage include:
 ### Installation
 
 ```console
-$ yarn       # install dev dependencies
-$ yarn build # compile solidity
+$ yarn                                # install dev dependencies
+$ yarn build                          # compile solidity
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ $ yarn build # compile solidity
 Sample Weighted Pool with immutable weights
 
 ```
-$ yarn test test/BasicTest.ts
+$ yarn test test/BasicTest.ts         # run basic test template
 ```
 
 ## Licensing
