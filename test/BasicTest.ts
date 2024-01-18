@@ -1,12 +1,12 @@
 import { ethers } from 'hardhat';
 import { expect } from 'chai';
 import { Contract } from 'ethers';
+import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { defaultAbiCoder } from '@ethersproject/abi';
 import { impersonateAccount, setBalance } from '@nomicfoundation/hardhat-network-helpers';
 
 import { MockAuthorizerAdaptorEntrypoint } from '../typechain/test/MockAuthorizerAdaptorEntrypoint';  
-import { TestToken } from '../typechain/test/TestToken';  
 import { BasicWeightedPool } from '../typechain';
 
 import { Vault } from '../typechain/Vault';     
@@ -27,6 +27,7 @@ import {SingleSwap, SwapKind, FundManagement, JoinPoolRequest, WeightedPoolEncod
 const NAME = 'Basic Balancer Pool Token';
 const SYMBOL = 'BPT';
 const POOL_SWAP_FEE_PERCENTAGE = fp(0.01);
+const TIMEOUT = 2000;
 
 const numTokens = 3;
 const WEIGHTS = toNormalizedWeights([fp(30), fp(70), fp(5), fp(5)].slice(0, numTokens));
@@ -56,7 +57,8 @@ let entrypoint: MockAuthorizerAdaptorEntrypoint;
 
 function getHardhatTimeout(): number {
   const hre: HardhatRuntimeEnvironment = require('hardhat');
-  return hre.config.mocha.timeout || 2000; // Default to 2000ms if not specified
+  hre.config.mocha.timeout = TIMEOUT // Default to 2000ms
+  return hre.config.mocha.timeout; 
 }
 
 async function deployRawVault(): Promise<void>  {
