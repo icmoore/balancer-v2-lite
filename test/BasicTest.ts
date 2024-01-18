@@ -54,6 +54,11 @@ let feesProvider: ProtocolFeePercentagesProvider;
 let vault: Vault;
 let entrypoint: MockAuthorizerAdaptorEntrypoint;
 
+function getHardhatTimeout(): number {
+  const hre: HardhatRuntimeEnvironment = require('hardhat');
+  return hre.config.mocha.timeout || 2000; // Default to 2000ms if not specified
+}
+
 async function deployRawVault(): Promise<void>  {
   entrypoint = await new MockAuthorizerAdaptorEntrypoint__factory(deployer).deploy()
   authorizer = await new TimelockAuthorizer__factory(deployer).deploy(admin.address, ZERO_ADDRESS, entrypoint.address, MONTH)
@@ -162,7 +167,7 @@ before('setup signers', async () => {
 });  
 
 describe("BasicWeightedPool", function() {
-    this.timeout(3000); // 3secs timeout
+    this.timeout(getHardhatTimeout());
     context('Engage factory contract BasicWeightedPool.sol', () => {
       
       it('swap given in', async () => {
