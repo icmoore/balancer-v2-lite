@@ -27,4 +27,7 @@ export default {
     outDir: 'typechain',
   }, 
   warnings: hardhatBaseConfig.warnings,
+  mocha: {
+    timeout: 3000 // Timeout for tests: 3 seconds
+  },
 };
