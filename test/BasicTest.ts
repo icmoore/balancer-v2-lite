@@ -9,7 +9,6 @@ import { MockAuthorizerAdaptorEntrypoint } from '../typechain/test/MockAuthorize
 import { TestToken } from '../typechain/test/TestToken';  
 import { BasicWeightedPool } from '../typechain';
 
-import { Swaps } from '../typechain/Swaps';  
 import { Vault } from '../typechain/Vault';     
 import { ProtocolFeePercentagesProvider } from '../typechain/ProtocolFeePercentagesProvider';
 import { BasicWeightedPool__factory } from '../typechain/factories/BasicWeightedPool__factory';      
@@ -172,7 +171,7 @@ describe("BasicWeightedPool", () => {
         await deployTokens();
         await protocolFeeProvider();
         await deployRawWeightedPoolContract();
-        await initRawJoin()        
+        await initRawJoin();        
         await poolInfo('post join');
         await rawSwapVault();
         await poolInfo('post swap');

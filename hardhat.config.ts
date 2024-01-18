@@ -11,12 +11,14 @@ import { TASK_COMPILE } from 'hardhat/builtin-tasks/task-names';
 
 
 export default {
+  
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true,  
     },
   },
   solidity: {
+    settings: { optimizer: { enabled: true, runs: 200 } } ,  
     compilers: hardhatBaseConfig.compilers,
     overrides: { ...hardhatBaseConfig.overrides(name) },
   },
