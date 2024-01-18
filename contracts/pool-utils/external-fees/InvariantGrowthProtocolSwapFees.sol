@@ -15,7 +15,7 @@
 pragma solidity ^0.7.0;
 
 import "../../solidity-utils/math/FixedPoint.sol";
-//import "../../solidity-utils/math/Math.sol";
+import "../../solidity-utils/math/Math.sol";
 import "./ExternalFees.sol";
 
 library InvariantGrowthProtocolSwapFees {
