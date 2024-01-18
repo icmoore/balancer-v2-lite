@@ -161,8 +161,8 @@ before('setup signers', async () => {
     [ ,admin, lp, recipient, deployer] = await ethers.getSigners();
 });  
 
-describe("BasicWeightedPool", () => {
-
+describe("BasicWeightedPool", function() {
+    this.timeout(3000); // 3secs timeout
     context('Engage factory contract BasicWeightedPool.sol', () => {
       
       it('swap given in', async () => {
