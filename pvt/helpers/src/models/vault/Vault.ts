@@ -1,5 +1,5 @@
 import { ethers } from 'hardhat';
-import { SwapKind } from '@balancer-labs/balancer-js';
+import { SwapKind } from '../../../../../balancer-js';
 import { BigNumber, Contract, ContractTransaction } from 'ethers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/dist/src/signer-with-address';
 

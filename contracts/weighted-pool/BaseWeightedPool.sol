@@ -20,7 +20,7 @@ import "../solidity-utils/math/FixedPoint.sol";
 import "../solidity-utils/helpers/InputHelpers.sol";
 import "../pool-utils/BaseMinimalSwapInfoPool.sol";
 import "../pool-utils/lib/BasePoolMath.sol";
-import "../WeightedMath.sol";
+import "./WeightedMath.sol";
 
 /**
  * @dev Base class for WeightedPools containing swap, join and exit logic, but leaving storage and management of

@@ -11,7 +11,7 @@ import { BasicWeightedPool } from '../typechain';
 
 import { Vault } from '../typechain/Vault';     
 import { ProtocolFeePercentagesProvider } from '../typechain/ProtocolFeePercentagesProvider';
-import { BasicWeightedPool__factory } from '../typechain/factories/BasicWeightedPool__factory';      
+import { BasicWeightedPool__factory } from '../typechain/factories/weighted-pool/BasicWeightedPool__factory';      
 import { ProtocolFeePercentagesProvider__factory } from '../typechain/factories/ProtocolFeePercentagesProvider__factory';     
 import { MockAuthorizerAdaptorEntrypoint__factory } from '../typechain/factories/test/MockAuthorizerAdaptorEntrypoint__factory';     
 import { TimelockAuthorizer__factory } from '../typechain/factories/authorizer/TimelockAuthorizer__factory';     
@@ -85,7 +85,7 @@ async function protocolFeeProvider(): Promise<void> {
                                                                                         MAX_AUM_VALUE);
 } 
 
-async function deployRawWeightedPoolContract(): Promise<void>  {
+async function deployRawPoolContract(): Promise<void>  {
     console.log('     Deploying WeightedPool ...');  
     let null_addr_arr:string[] = [ZERO_ADDRESS,ZERO_ADDRESS,ZERO_ADDRESS]
   
@@ -177,7 +177,7 @@ describe("BasicWeightedPool", function() {
         await deployRawVault()
         await deployTokens();
         await protocolFeeProvider();
-        await deployRawWeightedPoolContract();
+        await deployRawPoolContract();
         await initRawJoin();        
         await poolInfo('post join');
         await rawSwapVault();
@@ -186,6 +186,7 @@ describe("BasicWeightedPool", function() {
    
     }); 
 });      
+
 
 
 

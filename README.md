@@ -29,6 +29,12 @@ Sample Weighted Pool with immutable weights
 $ yarn test test/WeightedPoolTest.ts  # run basic test template
 ```
 
+Sample Composable Stable Pool with preminted BPT
+
+```
+$ yarn test test/StablePoolTest.ts  # run basic test template
+```
+
 ### Tutorials
 I.Moore, [How to Create a Weighted Pool with Balancer v2 Lite](https://medium.com/coinmonks/onboarding-with-balancer-v2-lite-5e3b9c2c8824), Coinmonks, Jan 2024.
 

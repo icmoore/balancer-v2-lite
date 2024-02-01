@@ -1,9 +1,9 @@
 import { ethers } from 'hardhat';
 import { BigNumber, Contract, ContractTransaction, ContractReceipt, ContractFunction } from 'ethers';
 
-import { BatchSwapStep, FundManagement, SwapKind } from '@balancer-labs/balancer-js';
-import { BigNumberish, bn } from '@balancer-labs/v2-helpers/src/numbers';
-import { StablePoolEncoder } from '@balancer-labs/balancer-js/src';
+import { BatchSwapStep, FundManagement, SwapKind } from '../../../../../../balancer-js';
+import { BigNumberish, bn } from '../../../numbers';
+import { StablePoolEncoder } from '../../../../../../balancer-js/src';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 
 import { Account, NAry, TxParams } from '../../types/types';

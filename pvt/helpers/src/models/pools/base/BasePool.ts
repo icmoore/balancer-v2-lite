@@ -1,7 +1,7 @@
 import { ethers } from 'hardhat';
 import { BigNumber, Contract, ContractTransaction } from 'ethers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { BasePoolEncoder } from '@balancer-labs/balancer-js';
+import { BasePoolEncoder } from '../../../../../../balancer-js';
 import { ZERO_ADDRESS } from '../../../constants';
 import * as expectEvent from '../../../test/expectEvent';
 import TypesConverter from '../../types/TypesConverter';
