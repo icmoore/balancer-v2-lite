@@ -8,7 +8,7 @@ Basic usage include:
 * deploy vault
 * deploy test tokens
 * protocol fee provider
-* weighted pool factory
+* weighted & stable composable pool factory
 * initial token join
 * swapgivenin / swapgivenout
 
