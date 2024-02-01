@@ -1,6 +1,6 @@
 # Balancer V2 Lite
 
-A Hello World starter kit implementation of [Balancer v2 Core](https://github.com/balancer/balancer-v2-monorepo); compile solidity from scratch and use 
+A 'Hello World' starter kit implementation of [Balancer v2 Core](https://github.com/balancer/balancer-v2-monorepo); compile solidity from scratch and use 
 [typechain](https://www.npmjs.com/package/typechain) for testing; useful for core devs who wish to streamline their project to work directly with raw solidity and not 
 rely on pre-compiled balancer v2 npm libraries
 
