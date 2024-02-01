@@ -26,13 +26,13 @@ $ yarn build                          # compile solidity
 Sample Weighted Pool with immutable weights
 
 ```
-$ yarn test test/WeightedPoolTest.ts  # run basic test template
+$ yarn test test/WeightedPoolTest.ts  # run basic weighted pool test template
 ```
 
 Sample Composable Stable Pool with preminted BPT
 
 ```
-$ yarn test test/StablePoolTest.ts  # run basic test template
+$ yarn test test/StablePoolTest.ts   # run basic stable pool template
 ```
 
 ### Tutorials
