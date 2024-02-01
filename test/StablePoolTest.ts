@@ -39,7 +39,7 @@ let tokens: TokenList;
 let vault: Vault;
 let feesProvider: ProtocolFeePercentagesProvider;
 let entrypoint: MockAuthorizerAdaptorEntrypoint;
-let composableStableFactory: ComposableStablePool;
+let composableStablePool: ComposableStablePool;
 
 const NAME = 'Balancer Pool Token';
 const SYMBOL = 'BPT';
@@ -50,6 +50,7 @@ const BASE_PAUSE_WINDOW_DURATION = MONTH * 3;
 const BASE_BUFFER_PERIOD_DURATION = MONTH;
 const MAX_AUM_VALUE = fp(0.2);
 const MAX_YIELD_VALUE = fp(0.8);
+const AMPLIFICATION = 200;
 const DEFAUT_TIMEOUT = 2000;
 
 function getHardhatTimeout(): number {
@@ -107,7 +108,7 @@ async function deployRawPoolContract(): Promise<void>  {
     rateProviders: TypesConverter.toAddresses(rateProviders),
     tokenRateCacheDurations: tokenRateCacheDurations,
     exemptFromYieldProtocolFeeFlags: exemptFromYieldProtocolFeeFlags,
-    amplificationParameter: 200,    
+    amplificationParameter: AMPLIFICATION,    
     swapFeePercentage: POOL_SWAP_FEE_PERCENTAGE,        
     pauseWindowDuration: BASE_PAUSE_WINDOW_DURATION,         
     bufferPeriodDuration: BASE_BUFFER_PERIOD_DURATION,   
@@ -115,18 +116,18 @@ async function deployRawPoolContract(): Promise<void>  {
     version: VERSION,         
   };
 
-  composableStableFactory = await new ComposableStablePool__factory(deployer).deploy(pool_params)                                                                                                                                       
+  composableStablePool = await new ComposableStablePool__factory(deployer).deploy(pool_params)                                                                                                                                       
 } 
 
 
 async function initRawJoin(): Promise<void> {
-  bptIndex = 0
+  bptIndex =  Number(await composableStablePool.getBptIndex())
   initialBalances = Array.from({ length: numTokens + 1 }).map((_, i) => (i == bptIndex ? fp(2596148429267412): fp(1 - i / 10)));  
   const joinKind = 0;
   const abi = ['uint256', 'uint256[]'];
   const data = [joinKind, initialBalances];
   const userData = defaultAbiCoder.encode(abi,data); 
-  const poolId = await composableStableFactory.getPoolId();
+  const poolId = await composableStablePool.getPoolId();
   const poolTokens = await vault.getPoolTokens(poolId)
 
   const request: JoinPoolRequest = {
@@ -142,7 +143,7 @@ async function initRawJoin(): Promise<void> {
 
 async function rawSwapVault(): Promise<void> {
 
-  const poolId = await composableStableFactory.getPoolId();
+  const poolId = await composableStablePool.getPoolId();
   const amount = fp(0.1);
   const amountWithFees = fpMul(amount, POOL_SWAP_FEE_PERCENTAGE.add(fp(1)));
 
@@ -167,7 +168,7 @@ async function rawSwapVault(): Promise<void> {
 
 
 async function poolInfo(context: string): Promise<void> {
-  const poolId = await composableStableFactory.getPoolId();
+  const poolId = await composableStablePool.getPoolId();
   const poolTokens = await vault.getPoolTokens(poolId)
 
   let message: string = "\n        Stable pool info: " + context + "+\n";
