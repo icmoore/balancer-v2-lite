@@ -32,7 +32,7 @@ $ yarn test test/WeightedPoolTest.ts  # run basic weighted pool test template
 Sample Composable Stable Pool with preminted BPT
 
 ```
-$ yarn test test/StablePoolTest.ts   # run basic stable pool template
+$ yarn test test/StablePoolTest.ts   # run basic stable pool test template
 ```
 
 ### Tutorials
