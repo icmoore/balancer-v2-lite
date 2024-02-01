@@ -14,9 +14,9 @@
 
 pragma solidity ^0.7.0;
 
-import "./solidity-utils/helpers/InputHelpers.sol";
-import "./solidity-utils/math/FixedPoint.sol";
-import "./solidity-utils/math/Math.sol";
+import "../solidity-utils/helpers/InputHelpers.sol";
+import "../solidity-utils/math/FixedPoint.sol";
+import "../solidity-utils/math/Math.sol";
 
 // These functions start with an underscore, as if they were part of a contract and not a library. At some point this
 // should be fixed.
