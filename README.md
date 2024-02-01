@@ -26,7 +26,7 @@ $ yarn build                          # compile solidity
 Sample Weighted Pool with immutable weights
 
 ```
-$ yarn test test/BasicTest.ts         # run basic test template
+$ yarn test test/WeightedPoolTest.ts  # run basic test template
 ```
 
 ### Tutorials
