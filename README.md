@@ -37,6 +37,7 @@ $ yarn test test/StablePoolTest.ts   # run basic stable pool test template
 
 ### Tutorials
 I.Moore, [How to Create a Weighted Pool using Balancer v2 Lite](https://medium.com/coinmonks/onboarding-with-balancer-v2-lite-5e3b9c2c8824), Coinmonks, Jan 2024.
+
 I.Moore, [How to Create a Composable Stable Pool using Balancer v2 
 Lite](https://medium.com/coinmonks/how-to-create-a-composable-stable-pool-using-balancer-v2-lite-df44c756f0c0), 
 Coinmonks, Feb 2024.
